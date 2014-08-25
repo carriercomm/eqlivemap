@@ -20,40 +20,52 @@ if (Meteor.isClient) {
     var canvas = document.getElementById('map-canvas');
     var figures = Figures.find().fetch()
     if(typeof canvas == "object" && canvas && typeof canvas.getContext == "function"){
-
-      canvas.width = $('section.map').width();
-      canvas.height = $('section.map').height()
-      var context = canvas.getContext('2d');
-      context.save()
-      context.clearRect(0, 0, canvas.width, canvas.height);
-
-
-
-      var ranges = {x:{min:10000,max:-10000}, y:{min:10000,max:-10000}}
+     
+      var ranges = {x:{min:0,max:0}, y:{min:0,max:0}}
       _.reduce(figures, function(ranges, f){
         if(f.type != "line")
           return ranges
-        if(f.x1 < ranges.x.min) ranges.x.min = f.x1;
-        if(f.x2 < ranges.x.min) ranges.x.min = f.x2;
-        if(f.x1 > ranges.x.max) ranges.x.max = f.x1;
-        if(f.x2 > ranges.x.max) ranges.x.max = f.x2;
-        if(f.y1 < ranges.y.min) ranges.y.min = f.y1;
-        if(f.y2 < ranges.y.min) ranges.y.min = f.y2;
-        if(f.y1 > ranges.y.max) ranges.y.max = f.y1;
-        if(f.y2 > ranges.y.max) ranges.y.max = f.y2;
+          ranges.x.min = _.min([ranges.x.min, f.x1, f.x2])
+          ranges.y.min = _.min([ranges.y.min, f.y1, f.y2])
+          ranges.x.max = _.max([ranges.x.max, f.x1, f.x2])
+          ranges.y.max = _.max([ranges.y.max, f.y1, f.y2])
        return ranges 
      }, ranges);
 
       var width = ranges.x.max - ranges.x.min,
           height = ranges.y.max - ranges.y.min,
-          scaleX = canvas.width / width,
+          aspect = width/height
+
+      if(aspect < 1)
+      {
+        canvas.width = $('section.map').width()
+        canvas.height = $('section.map').height()  
+      }
+      else{
+        canvas.width = $('section.map').width()
+        canvas.height = $('section.map').height()
+      }
+
+      var scaleX = canvas.width / width,
           scaleY = canvas.height / height
+      
+      var context = canvas.getContext('2d');
+      context.save()
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+          context.font = '10pt Calibri';
+          context.fillStyle = "rgba(0,0,0,1)"
+          context.fillText("Dimensions: " + width + " x " + height,10,40);
+          context.fillText("Aspect: " + aspect.toFixed(2),10,60);
+          context.fillText("Scale: " + scaleX.toFixed(2) + " x " + scaleY.toFixed(2),10,80);
           
           context.translate(-ranges.x.min*scaleX,-ranges.y.min*scaleY)
           
           context.scale(scaleX, scaleY)
           //ranges.x.min = ranges.x.min-1500
           //ranges.y.min = ranges.y.min-500
+          var fontscale = width/3000*40
+          context.font = parseInt(20*fontscale) + 'pt Calibri';
 
       _.each(figures, function(f){
            //console.log(f)
@@ -61,7 +73,15 @@ if (Meteor.isClient) {
              context.beginPath();
              context.moveTo((f.x1), (f.y1));
              context.lineTo((f.x2), (f.y2));
+             context.strokeStyle = "rgba("+f.r+","+f.g+","+f.b+",1)"
              context.stroke();
+           }
+           else if(f.type == "label"){
+              //console.log(f)
+              context.font = parseInt(fontscale) + 'pt Calibri';
+              context.fillStyle = "rgba("+f.r+","+f.g+","+f.b+",1)"
+              context.fillStyle = "rgba(0,0,0,1)"
+              context.fillText(f.label.replace(/_/g," "),f.x,f.y);
            }
          })
 
