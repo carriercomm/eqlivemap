@@ -13,7 +13,7 @@ if (Meteor.isClient) {
 	});
 
 	Router.map(function() {
-	  	this.route('home', {path: '/'});
+	  	this.route('home', {path: '/', waitOn: function(){ return Meteor.subscribe("maps")}})
 		this.route('map', { 
 		  path: '/map/:name',
 		  waitOn: function() { return [ Meteor.subscribe("maps"), Meteor.subscribe("figures", this.params.name) ] },
