@@ -1,0 +1,31 @@
+<head>
+  <title>eqlivemap</title>
+</head>
+
+<body>
+</body>
+
+<template name="content">
+  <nav>{{> nav}}</nav>
+  <div id="content">
+    {{> yield}}
+  </div>
+</template>
+
+<template name="nav">
+ Zone list
+ <ul>
+ {{#each maps}}
+ 	<li><a rel="maps" href="{{pathFor 'map'}}" data-map-name="{{name}}">{{name}}</a></li>
+ {{/each}}
+ </ul>
+ 
+</template>
+
+<template name="home">
+Boring!
+</template>
+
+<template name="map">
+<canvas id="myCanvas" width="1000" height="1000"></canvas>
+</template>
