@@ -36,19 +36,15 @@ if (Meteor.isClient) {
           height = ranges.y.max - ranges.y.min,
           aspect = width/height
 
-      if(aspect < 1)
-      {
         canvas.width = $('section.map').width()
         canvas.height = $('section.map').height()  
-      }
-      else{
-        canvas.width = $('section.map').width()
-        canvas.height = $('section.map').height()
-      }
 
       var scaleX = canvas.width / width,
           scaleY = canvas.height / height
       
+          scaleX = _.min([scaleX, scaleY])
+          scaleY = scaleX
+
       var context = canvas.getContext('2d');
       context.save()
       context.clearRect(0, 0, canvas.width, canvas.height);
