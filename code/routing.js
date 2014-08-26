@@ -16,7 +16,7 @@ if (Meteor.isClient) {
 	  	this.route('home', {path: '/', waitOn: function(){ return Meteor.subscribe("maps")}})
 		this.route('map', { 
 		  path: '/map/:name',
-		  waitOn: function() { return [ Meteor.subscribe("maps"), Meteor.subscribe("figures", this.params.name) ] },
+		  waitOn: function() { return [ Meteor.subscribe("maps"), Meteor.subscribe("figures", this.params.name), Meteor.subscribe("players", this.params.name) ] },
 		  data: function() { return this.params.name }
 		});
 	})

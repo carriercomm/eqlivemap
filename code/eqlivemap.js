@@ -19,6 +19,7 @@ if (Meteor.isClient) {
   drawMap = function() {
     var canvas = document.getElementById('map-canvas');
     var figures = Figures.find().fetch()
+    var players = Players.find().fetch()
     if(typeof canvas == "object" && canvas && typeof canvas.getContext == "function"){
      
       var ranges = {x:{min:0,max:0}, y:{min:0,max:0}}
@@ -62,6 +63,12 @@ if (Meteor.isClient) {
           //ranges.y.min = ranges.y.min-500
           var fontscale = width/3000*40
           context.font = parseInt(20*fontscale) + 'pt Calibri';
+          if(scaleX < 0.1)
+            context.lineWidth = 15;
+          else if(scaleX < 0.2)
+            context.lineWidth = 6;
+          else
+            context.lineWidth = 1;
 
       _.each(figures, function(f){
            //console.log(f)
@@ -81,18 +88,17 @@ if (Meteor.isClient) {
            }
          })
 
+      _.each(players, function(p){
+        context.font = parseInt(fontscale) + 'pt Calibri';
+        context.fillStyle = "rgba(0,0,255,1)"
+        context.fillText(p.name,p.x,p.y-parseInt(2*fontscale));
+        context.font = parseInt(fontscale*1.5) + 'pt Calibri';
+        context.fillText("o",p.x,p.y-fontscale);
+      })
+
       context.restore()
     }
   }
-
-  Template.nav.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-    }
-  });
-
   Meteor.startup(function() {
 
   })
@@ -108,6 +114,10 @@ if (Meteor.isServer) {
     return Figures.find({map:mapName});
   });
 
+  Meteor.publish("players", function (mapName) {
+    return Players.find({map:mapName});
+  });
+
   Meteor.publish("mapAndFigures", function(mapName){
     return [
       Maps.find({name: mapName}),
@@ -116,6 +126,8 @@ if (Meteor.isServer) {
   })
 
   Meteor.startup(function () {
+    Players.remove({})
+    Players.insert({map: "timorous", name:"jrox", x:-1390, y:3256, z:280})
 
     if(!Maps.findOne()){
       //clean up old records
