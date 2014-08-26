@@ -15,6 +15,18 @@ if (Meteor.isClient) {
       Session.set("map", map)
     }
   })
+
+  switchMap = function(){
+    if(Session.get("player")){
+      console.log("player change")
+      player = Players.findOne({_id:Session.get("player")})
+      if(player && player.map){
+        Router.go('map', {name:player.map});  
+      }
+      
+    }
+  }
+
   // Function that redraws the entire canvas from shapes in Meteor.Collection
   drawMap = function() {
     var canvas = document.getElementById('map-canvas');
@@ -100,7 +112,12 @@ if (Meteor.isClient) {
     }
   }
   Meteor.startup(function() {
-
+    $(window).resize(function(e) {
+      drawMap()
+    });
+    Deps.autorun(function () {
+      switchMap()
+    });
   })
 }
 
@@ -115,15 +132,8 @@ if (Meteor.isServer) {
   });
 
   Meteor.publish("players", function (mapName) {
-    return Players.find({map:mapName});
+    return Players.find();
   });
-
-  Meteor.publish("mapAndFigures", function(mapName){
-    return [
-      Maps.find({name: mapName}),
-      Figures.find({map: mapName})
-    ]
-  })
 
   Meteor.startup(function () {
     Players.remove({})

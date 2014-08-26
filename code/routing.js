@@ -22,3 +22,32 @@ if (Meteor.isClient) {
 	})
 	
 }
+
+if (Meteor.isServer){
+	Router.map(function () {
+	  this.route('updatePlayer', {
+	    where: 'server',
+	    path: '/player',
+
+	    action: function () {
+	      data = this.request.body
+	      result = false
+	      if(data.player && data.x && data.y && data.z)
+	      {
+	      	Players.update({_id:data.player}, {$set: {x:-1*data.x, y:-1*data.y, z:data.z}})
+	      	result = true
+	      }
+	      if(result){
+	      	this.response.writeHead(200, {'Content-Type': 'text/html'});
+	      	this.response.end("ok");
+	      }
+	      else
+	      {
+	      	this.response.writeHead(400);
+	      	this.response.end("Request must supply {player: id, x:x', y:y', z:y'}");
+	      }
+
+	    }
+	  });
+	});
+}
