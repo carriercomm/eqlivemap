@@ -117,7 +117,17 @@ if (Meteor.isClient) {
   }
   Meteor.startup(function() {
    
+   if(localStorage.getItem("player")){
     Session.set("player", localStorage.getItem("player"));
+   }
+   else{
+    Meteor.call("readyPlayerOne", function(err,resp){
+      localStorage.setItem("player", resp)
+      Session.set("player", localStorage.getItem("player"));
+    })
+   }
+    
+
 
     $(window).resize(function(e) {
       drawMap()
@@ -141,6 +151,13 @@ if (Meteor.isServer) {
 
   Meteor.publish("players", function (mapName) {
     return Players.find();
+  });
+
+  Meteor.methods({
+    readyPlayerOne: function () {
+      id = Players.insert({})
+      return id;
+    }
   });
 
   Meteor.startup(function () {
