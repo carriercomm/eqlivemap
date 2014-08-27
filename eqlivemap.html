@@ -17,17 +17,21 @@
 </template>
 
 <template name="nav">
+ Player
+ <br>
+ {{player}}
+ <br>
  Zone list
  <ul>
  {{#each maps}}
- 	<li><a rel="maps" href="{{pathFor 'map'}}" data-map-name="{{name}}">{{name}}</a></li>
+ 	<li><a rel="maps" href="{{pathFor 'map'}}" data-map-name="{{name}}">{{long_name}} ({{name}})</a></li>
  {{/each}}
  </ul>
  
 </template>
 
 <template name="home">
-Click a map yo.
+Click a map yo...
 </template>
 
 <template name="map">
