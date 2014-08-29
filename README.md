@@ -1,11 +1,12 @@
 Everquest Live Map
 =========
 
-A reactive mapping website for classic everquest servers.
+A reactive mapping website for classic everquest servers done in meteor js.
 
 When passed a player id that matches the current session a maps of the entire Everquest world can be drawn and player position annotated semi-automatically.
 
 This website makes use of an AutoIt helper program to monitor log files and make the http requests on windows and can easily be made to work on mac/linux with a small shell script.
+
 
 ###Getting Started###
 Visit http://eqlivemap.meteor.com
