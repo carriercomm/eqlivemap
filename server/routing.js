@@ -10,25 +10,26 @@ if (Meteor.isServer){
 	      if(!data.player)
 	      	data = this.request.query
 	      result = false
-	      if(data.player && data.x && data.y && data.z)
-	      {
-	      	update = {x:-1*data.x, y:-1*data.y, z:data.z}
-	      	if(data.name)
-	      		update.name = data.name
-
-	      	Players.update({_id:data.player}, {$set: update})
-	      	result = true
-	      }
-	      if(result){
-	      	this.response.writeHead(200, {'Content-Type': 'text/html'});
-	      	this.response.end("ok");
-	      }
-	      else
+	      if(!(data.player && data.x && data.y && data.z))
 	      {
 	      	this.response.writeHead(400);
 	      	this.response.end("Request must supply {player: id, x:x', y:y', z:y'}");
+	      	return
 	      }
+	      var player = Players.findOne({_id: data.player})
+	      if(!player){
+	      	this.response.writeHead(400);
+	      	this.response.end("Player id not found.  Visit http://eqlivemap.meteor.com to get your player id.");
+	      	return;	
+	      }
+	      if(!data.name)
+	      	data.name = "a_player_03"	      
+	      update = {x:parseFloat(-1*data.x), y:parseFloat(-1*data.y), z:parseFloat(data.z), loc_map: player.map, name: data.name}
 
+
+	      Players.update({_id:data.player}, {$set: update})
+	      this.response.writeHead(200, {'Content-Type': 'text/html'});
+	      this.response.end(data.name + " location set to " + data.x + ", " + data.y + ", " + data.z + ".");
 	    }
 	  });
 
@@ -37,33 +38,43 @@ if (Meteor.isServer){
 	    path: '/player/setmap',
 
 	    action: function () {
-	      //console.log(this.request)
-	      data = this.request.body
-	      if(!data.player)
-	      	data = this.request.query
-	      result = false
-	      if(data.player && data.map)
-	      {
-	      	map  = Maps.findOne({long_name: data.map})
-	      	if(map){
-	      		update = {map: map.name}
-	      		if(data.name)
-	      			update.name = data.name
-	      		Players.update({_id:data.player}, {$set: update})
-	      	}
-	      	result = true
-	      }
-	      if(result){
-	      	this.response.writeHead(200, {'Content-Type': 'text/html'});
-	      	this.response.end("ok");
-	      }
-	      else
-	      {
-	      	this.response.writeHead(400);
-	      	this.response.end("Request must supply {player: id, map: Ocean of Tears}");
-	      }
+		//console.log(this.request)
+		data = this.request.body
+		if(!data.player)
+			data = this.request.query
+		console.log(data)
+		if(!(data.player && data.map))
+		{
+			this.response.writeHead(400);
+			this.response.end("Request must supply {player: id, map: Ocean of Tears}");
+			console.log("asdf")
+			return;
+		}
 
+		var player = Players.findOne({_id: data.player})
+		if(!player){
+			this.response.writeHead(400);
+			this.response.end("Player Id not found.  Visit http://eqlivemap.meteor.com to get your player id");
+			console.log("123")
+			return;	
+		}
+
+		map  = Maps.findOne({long_name: data.map})
+		if(!map){
+			this.response.writeHead(400);
+			this.response.end(data.map + " not found.  Where are you?");
+			console.log("1111111")
+			return;		
+		}
+
+		if(!data.name)
+			data.name = "a_player_03"	    	
+		update = {map: map.name, name: data.name}	
+		Players.update({_id:data.player}, {$set: update})
+		this.response.writeHead(200, {'Content-Type': 'text/html'});
+		this.response.end(data.name + " map set to " + data.map  + ".");
 	    }
+
 	  });
 	});
 }

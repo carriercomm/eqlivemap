@@ -1,11 +1,14 @@
 <head>
-  <title>eqlivemap</title>
+  <title>Everquest Live Map</title>
 </head>
 
 <body>
 </body>
 
 <template name="content">
+<section class='header'>
+{{> header }}
+</section>
   <section class='map'>
 	  <div id="map-container">
 	    {{> yield}}
@@ -13,36 +16,46 @@
 	</section>
 </template>
 
-<template name="nav">
- Player
- <br>
- {{player}}
- <br>
- Zone list
- <ul>
- {{#each maps}}
- 	<li><a rel="maps" href="{{pathFor 'map'}}" data-map-name="{{name}}">{{long_name}} ({{name}})</a></li>
- {{/each}}
- </ul>
- 
+<template name="header">
+<div class='header'>
+	<div class='breadcrumbs'>
+	<a href='{{pathFor 'home'}}'>Everquest Livemap</a>
+	</div>
+	<div class='map-nav'>
+		Maps
+		{{> maps }}
+	</div>
+	<div class='player-info'>
+		Player Id: {{player}}
+	</div>
+</div>
+</template>
+
+<template name="maps">
+	<div class='map-list'>
+		 <ul>
+		 {{#each maps}}
+		 	<li><a rel="maps" href="{{pathFor 'map'}}" data-map-name="{{name}}">{{#if long_name}}{{long_name}}{{else}}{{name}}{{/if}}</a></li>
+		 {{/each}}
+		 </ul>
+	 </div>
 </template>
 
 <template name="home">
 <div id='intro'>
 	<h1>Everquest Live Map</h1>
 	<img src='website.png'>
-	<h3>This page will become a fullscreen map with your location marked.</h3>
+	<h3>Follow instructions below and this page will become a fullscreen map with your location marked.</h3>
 
-	<h3>No more getting lost on Project1999</h3>
-
-	<p>Start mapping</p>
-	<p>Copy your unique player id: <input type='text' class='player-id' value='{{player}}'></p>
-	<p>Download the <a href='eqlivemap.zip'>EQ Live Map Helper</a>.  This includes a binary and the source code (AutoIt).</p>
-	<img src="helper.png">
-	<p>Run the helper app, paste in your player id ({{player}}), select your everquest log folder and hit 'GO'.  This app simply monitors your Everquest logs for zone and location information and then sends an http request to the server updating your player data</p>
-	<p>Make sure your logging is enabled in everquest by typing '/log on' in game or edit your eqclient.ini to turn them on permanently</p>
-	<p>In game change zones or type /who to set the map.  Type /loc to update your position on the map.</p>
-	<p>This page will automatically reveal your map once you have everything configured correctly</p>
+	<ol>
+		<li><p>Copy your unique player id: <input type='text' class='player-id' value='{{player}}'></p></li>
+		<li><p>Download the Everquest Livemap Helper <a href='eqlivemap.zip'>eqlivemap.zip</a> <small>(md5: 564bf9948ca085c64f09652dd2ee9685)</small>  This zip includes the binary (.exe) and the source code (AutoIt).</p>
+		<img src="helper.png"></li>
+		<li><p>Run the helper app, paste in your unique player id ({{player}}), select your everquest log folder and hit 'GO'.  This app simply monitors your Everquest logs for zone and location information and then sends an http request to the server updating your player data</p></li>
+		<li><p>Make sure your logging is enabled in everquest by typing '/log on' in game or edit your eqclient.ini to turn them on permanently</p></li>
+		<li><p>In game change zones or type /who to set the map.  Type /loc to update your position on the map.</p></li>
+		<li><p>This page will automatically reveal your map once you have everything configured correctly. Magic!</p></li>
+	</ol>
 </div>
 </template>
 

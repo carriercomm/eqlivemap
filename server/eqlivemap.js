@@ -9,8 +9,14 @@ if (Meteor.isServer) {
     return Figures.find({map:mapName});
   });
   
-  Meteor.publish("players", function (mapName) {
-    return Players.find({map:mapName});
+  Meteor.publish("players", function (mapName, player) {
+    if(player){
+      return Players.find( { $or: [ {map: mapName}, {_id: player} ] });
+    }
+    else{
+      return Players.find({map: mapName});
+    }
+    
   });
 
   Meteor.publish("allplayers", function () {
@@ -25,8 +31,6 @@ if (Meteor.isServer) {
   });
 
   Meteor.startup(function () {
-    //Players.remove({})
-    //Players.insert({map: "timorous", name:"jrox", x:-1390, y:3256, z:280})
 
     if(!Maps.findOne()){
       //clean up old records

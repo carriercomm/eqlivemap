@@ -4,8 +4,8 @@ if (Meteor.isClient) {
     return Session.get("player");
   });
   
-  Template.nav.maps = function () {
-    return Maps.find({}).fetch()
+  Template.maps.maps = function () {
+    return Maps.find({}, {sort:{long_name:1}}).fetch()
   };
 
   Template.map.rendered = function () {
@@ -14,7 +14,7 @@ if (Meteor.isClient) {
     });
   };
 
-  Template.nav.events({
+  Template.maps.events({
     'click [rel="map"]' : function (event, template) {
       var map = event.currentTarget.getAttribute('data-map-name')
       Session.set("map", map)
@@ -22,13 +22,15 @@ if (Meteor.isClient) {
   })
 
   switchMap = function(){
-    if(Session.get("player")){
+    //if(Session.get("player")){
+      console.log(Session.get("player"))
       player = Players.findOne({_id:Session.get("player")})
-      if(player && player.map){
+      console.log(player)
+      if(player && player.map){ //and player was updated recently?
         Router.go('map', {name:player.map});  
       }
       
-    }
+    //}
   }
 
   // Function that redraws the entire canvas from shapes in Meteor.Collection
@@ -36,6 +38,17 @@ if (Meteor.isClient) {
     var canvas = document.getElementById('map-canvas');
     var figures = Figures.find().fetch()
     var players = Players.find().fetch()
+    var active_player = Players.findOne({_id: Session.get('player')})
+    var zFilter = false; //Session.get('zfilter');
+    var zRange = false;
+
+    if(active_player && active_player.map == active_player.loc_map && zFilter){
+      zRange = {min: active_player.z - 300, max: active_player.z + 300}
+    }
+
+    console.log(zRange)
+    //console.log(active_player)
+
     if(typeof canvas == "object" && canvas && typeof canvas.getContext == "function"){
      
       var ranges = {x:{min:0,max:0}, y:{min:0,max:0}}
@@ -89,6 +102,10 @@ if (Meteor.isClient) {
       _.each(figures, function(f){
            //console.log(f)
            if(f.type == "line"){
+              if(zRange &&  f.z1 < zRange.min && f.z2 < zRange.min) 
+                return
+              if(zRange &&  f.z1 > zRange.max && f.z2 > zRange.max) 
+                return
              context.beginPath();
              context.moveTo((f.x1), (f.y1));
              context.lineTo((f.x2), (f.y2));
@@ -105,11 +122,13 @@ if (Meteor.isClient) {
          })
 
       _.each(players, function(p){
-        context.font = parseInt(fontscale) + 'pt Calibri';
-        context.fillStyle = "rgba(0,0,255,1)"
-        context.fillText(p.name,p.x,p.y-parseInt(2*fontscale));
-        context.font = parseInt(fontscale*1.5) + 'pt Calibri';
-        context.fillText("o",p.x,p.y-fontscale);
+        if(p.map == p.loc_map){
+          context.font = parseInt(fontscale) + 'pt Calibri';
+          context.fillStyle = "rgba(0,0,255,1)"
+          context.fillText(p.name,p.x,p.y-parseInt(2*fontscale));
+          context.font = parseInt(fontscale*1.5) + 'pt Calibri';
+          context.fillText("o",p.x,p.y-fontscale);
+        }
       })
 
       context.restore()
@@ -126,8 +145,6 @@ if (Meteor.isClient) {
     })
    }
     
-
-
     $(window).resize(function(e) {
       drawMap()
     });
