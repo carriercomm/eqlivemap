@@ -22,15 +22,10 @@ if (Meteor.isClient) {
   })
 
   switchMap = function(){
-    //if(Session.get("player")){
-      console.log(Session.get("player"))
       player = Players.findOne({_id:Session.get("player")})
-      console.log(player)
       if(player && player.map){ //and player was updated recently?
         Router.go('map', {name:player.map});  
       }
-      
-    //}
   }
 
   // Function that redraws the entire canvas from shapes in Meteor.Collection

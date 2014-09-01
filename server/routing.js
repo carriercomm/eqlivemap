@@ -58,8 +58,9 @@ if (Meteor.isServer){
 			console.log("123")
 			return;	
 		}
-
-		map  = Maps.findOne({long_name: data.map})
+		//have to use regex for case insentive due to some inconsitencies with eq Blackburrow vs BlackBurrow
+		var mapSearch = new RegExp(["^",data.map,"$"].join(""),"i");
+		map  = Maps.findOne({long_name: mapSearch})
 		if(!map){
 			this.response.writeHead(400);
 			this.response.end(data.map + " not found.  Where are you?");
