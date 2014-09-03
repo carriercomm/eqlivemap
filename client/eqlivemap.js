@@ -5,7 +5,7 @@ if (Meteor.isClient) {
   });
   
   Template.maps.maps = function () {
-    return Maps.find({}, {sort:{long_name:1}}).fetch()
+    return Maps.find({p99:1}, {sort:{long_name:1}}).fetch()
   };
 
   Template.map.rendered = function () {
