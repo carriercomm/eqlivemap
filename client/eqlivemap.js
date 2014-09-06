@@ -41,7 +41,7 @@ if (Meteor.isClient) {
       zRange = {min: active_player.z - 300, max: active_player.z + 300}
     }
 
-    console.log(zRange)
+    //console.log(zRange)
     //console.log(active_player)
 
     if(typeof canvas == "object" && canvas && typeof canvas.getContext == "function"){
