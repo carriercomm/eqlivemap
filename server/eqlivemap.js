@@ -46,13 +46,21 @@ if (Meteor.isServer) {
           mapData[m[0].toLowerCase()] = {long_name: m[1], p99: parseInt(m[2])}
       })
 
+      _.each(Assets.getText("zone_name_map_alt.csv").split("\n"), function(l){
+        var m = l.split("::");
+        if(m.length==2 && typeof mapData[m[0].toLowerCase()] == "object"){
+          console.log('Alt name:' + m[1])
+          mapData[m[0].toLowerCase()].long_name_alt = m[1]
+        }
+      })
+
       var mapFiles = Assets.getText("map_file_list.txt").split("\n")  
 
       _.each(mapFiles, function(mapName){
         var realMapName = mapName.replace(/_\d\.txt/, "").toLowerCase()
-        var map = typeof mapData[realMapName] == "object" ? mapData[realMapName] : {long_name: realMapName, p99: 0}
+        var map = typeof mapData[realMapName] == "object" ? mapData[realMapName] : {long_name: realMapName, long_name_alt: realMapName, p99: 0}
 
-        var mapId = Maps.findOne({name: realMapName}) ? Maps.findOne({name: realMapName})._id : Maps.insert({name: realMapName, long_name: map.long_name, p99: map.p99})
+        var mapId = Maps.findOne({name: realMapName}) ? Maps.findOne({name: realMapName})._id : Maps.insert({name: realMapName, long_name: map.long_name, long_name_alt: map.long_name_alt, p99: map.p99})
         console.log(realMapName + ' :: ' + mapId + ' :: ' + mapName )
         var mapFigures = Assets.getText("maps/"+mapName)
         _.each(mapFigures.split("\n"), function(data){

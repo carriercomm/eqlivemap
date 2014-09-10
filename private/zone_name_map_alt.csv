@@ -1,146 +1,146 @@
-airplane,Plane of Sky
-akanon,Ak'Anon
-arena,The Arena
-aviak,Aviak Village
-bazaar,The Bazaar
-befallen,Befallen
-beholder,Gorge of King Xorbb
-blackburrow,BlackBurrow
-burningwood,Burning Woods
-butcher,Butcherblock Mountains
-cabeast,East Cabilis
-cabwest,West Cabilis
-cauldron,Dagnor's Cauldron
-cazicthule,Cazic-Thule
-charasis,Howling Stones
-chardok,Chardok
-citymist,City of Mist
-cobaltscar,Cobalt Scar
-commonlands,Commonlands
-commons,West Commonlands
-crushbone,Clan Crushbone
-crystal,Crystal Caverns
-dalnir,Dalnir
-dreadlands,Dreadlands
-droga,Temple of Droga
-eastkarana,East Karana
-eastwastes,Eastern Wastes
-ecommons,East Commonlands
-emeraldjungle,The Emerald Jungle
-erudnext,Erudin
-erudnint,Erudin Palace
-erudsxing,Erud's Crossing
-erudsxing2,Marauder's Mire
-everfrost,Everfrost Peaks
-fearplane,Plane of Fear
-feerrott,The Feerrott(A)
-felwithea,Felwithe (A)
-felwitheb,Felwithe (B)
-fhalls,The Forgotten Halls
-fieldofbone,The Field of Bone
-firiona,Firiona Vie
-freeporteast,East Freeport
-freeportsewers,Freeport Sewers
-freeportwest,West Freeport
-freporte,East Freeport
-freportn,North Freeport
-freportw,West Freeport
-frontiermtns,Frontier Mountains
-frozenshadow,Tower of Frozen Shadow
-gfaydark,The Greater Faydark
-greatdivide,Great Divide
-grobb,Grobb
-growthplane,Plane of Growth
-guildhall,Guild Hall
-guildhalllrg,Grand Guild Hall
-guildlobby,The Guild Lobby
-gukbottom,Lower Guk
-guktop,Upper Guk
-halas,Halas
-hateplane,The Plane of Hate
-hateplaneb,The Plane of Hate
-highkeep,HighKeep
-highpasshold,Highpass Hold
-highpasskeep,Highpass Keep
-hole,The Ruins of Old Paineel
-iceclad,Iceclad Ocean
-innothule,Innothule Swamp
-jaggedpine,The Jaggedpine Forest
-kaesora,Kaesora
-kal,Kael Drakkal
-kaladima,Kaladim (A)
-kaladimb,Kaladim (B)
-karnor,Karnor's Castle
-kedge,Kedge Keep
-kerraridge,Kerra Isle
-kithicor,Kithicor Forest
-kurn,Kurn's Tower
-lakeofillomen,Lake of Ill Omen
-lakerathe,Lake Rathetear
-lavastorm,Lavastorm Mountains
-lfaydark,The Lesser Faydark
-mischiefplane,Plane of Mischief
-mistmoore,Castle Mistmoore
-misty,Misty Thicket
-najena,Najena
-necropolis,Dragon Necropolis
-nedaria,Nedaria's Landing
-nektropos,Nektropos
-nektulos,Nektulos Forest
-neriaka,Neriak Foreign Quarter
-neriakb,Neriak Commons
-neriakc,Neriak Third Gate
-neriakd,Neriak Palace
-northkarana,North Karana
-nro,North Ro
-nurga,Mines of Nurga
-oasis,Oasis of Marr
-oceanoftears,Ocean Of Tears
-oggok,Oggok
-oot,Ocean of Tears
-overthere,The Overthere
-paineel,Paineel
-paw,Infected Paw
-permafrost,Permafrost Keep
-poknowledge,Plane of Knowledge
-qcat,Qeynos Catacombs
-qey2hh1,West Karana
-qeynos,South Qeynos
-qeynos2,North Qeynos
-qeytoqrg,Qeynos Hills
-qrg,Surefall Glade
-rathemtn,Mountains of Rathe
-rivervale,Rivervale
-runnyeye,Clan RunnyEye
-sebilis,Old Sebilis
-shadowrest,Shadowrest
-sirens,Siren's Grotto
-skyfire,Skyfire Mountains
-skyshrine,Skyshrine
-sleeper,Sleeper's Tomb
-soldunga,Solusek's Eye
-soldungb,Nagafen's Lair
-soldungc,The Caverns of Exile
-soltemple,Temple of Solusek Ro
-southkarana,South Karana
-sro,South Ro
-steamfont,Steamfont Mountains
-steamfontmts,Steamfont Mountains
-stonebrunt,Stonebrunt Mountains
-swampofnohope,Swamp of No Hope
-takishruins,Ruins of Takish-Hiz
-templeveeshan,Temple of Veeshan
-thurgadina,Thurgadin
-thurgadinb,Icewell Keep
-timorous,Timorous Deep
-tox,Toxxulia Forest
-toxxulia,Toxxulia Forest
-trakanon,Trakanon's Teeth
-unrest,Estate of Unrest
-veeshan,Veeshan's Peak
-veksar,Veksar
-velketor,Velketor's Labyrinth
-wakening,The Wakening Land
-warrens,The Warrens
-warslikswood,Warsliks Wood
-westwastes,Western Wastes
+airplane::Plane of Sky
+akanon::Ak'Anon
+arena::The Arena
+aviak::Aviak Village
+bazaar::The Bazaar
+befallen::Befallen
+beholder::Gorge of King Xorbb
+blackburrow::BlackBurrow
+burningwood::Burning Woods
+butcher::Butcherblock Mountains
+cabeast::East Cabilis
+cabwest::West Cabilis
+cauldron::Dagnor's Cauldron
+cazicthule::Cazic-Thule
+charasis::Howling Stones
+chardok::Chardok
+citymist::City of Mist
+cobaltscar::Cobalt Scar
+commonlands::Commonlands
+commons::West Commonlands
+crushbone::Clan Crushbone
+crystal::Crystal Caverns
+dalnir::Dalnir
+dreadlands::Dreadlands
+droga::Temple of Droga
+eastkarana::East Karana
+eastwastes::Eastern Wastes
+ecommons::East Commonlands
+emeraldjungle::The Emerald Jungle
+erudnext::Erudin
+erudnint::Erudin Palace
+erudsxing::Erud's Crossing
+erudsxing2::Marauder's Mire
+everfrost::Everfrost Peaks
+fearplane::Plane of Fear
+feerrott::The Feerrott(A)
+felwithea::Felwithe (A)
+felwitheb::Felwithe (B)
+fhalls::The Forgotten Halls
+fieldofbone::The Field of Bone
+firiona::Firiona Vie
+freeporteast::East Freeport
+freeportsewers::Freeport Sewers
+freeportwest::West Freeport
+freporte::East Freeport
+freportn::North Freeport
+freportw::West Freeport
+frontiermtns::Frontier Mountains
+frozenshadow::Tower of Frozen Shadow
+gfaydark::The Greater Faydark
+greatdivide::Great Divide
+grobb::Grobb
+growthplane::Plane of Growth
+guildhall::Guild Hall
+guildhalllrg::Grand Guild Hall
+guildlobby::The Guild Lobby
+gukbottom::Lower Guk
+guktop::Upper Guk
+halas::Halas
+hateplane::The Plane of Hate
+hateplaneb::The Plane of Hate
+highkeep::HighKeep
+highpasshold::Highpass Hold
+highpasskeep::Highpass Keep
+hole::The Ruins of Old Paineel
+iceclad::Iceclad Ocean
+innothule::Innothule Swamp
+jaggedpine::The Jaggedpine Forest
+kaesora::Kaesora
+kal::Kael Drakkal
+kaladima::Kaladim (A)
+kaladimb::Kaladim (B)
+karnor::Karnor's Castle
+kedge::Kedge Keep
+kerraridge::Kerra Isle
+kithicor::Kithicor Forest
+kurn::Kurn's Tower
+lakeofillomen::Lake of Ill Omen
+lakerathe::Lake Rathetear
+lavastorm::Lavastorm Mountains
+lfaydark::The Lesser Faydark
+mischiefplane::Plane of Mischief
+mistmoore::Castle Mistmoore
+misty::Misty Thicket
+najena::Najena
+necropolis::Dragon Necropolis
+nedaria::Nedaria's Landing
+nektropos::Nektropos
+nektulos::Nektulos Forest
+neriaka::Neriak Foreign Quarter
+neriakb::Neriak Commons
+neriakc::Neriak Third Gate
+neriakd::Neriak Palace
+northkarana::North Karana
+nro::North Ro
+nurga::Mines of Nurga
+oasis::Oasis of Marr
+oceanoftears::Ocean Of Tears
+oggok::Oggok
+oot::Ocean of Tears
+overthere::The Overthere
+paineel::Paineel
+paw::Infected Paw
+permafrost::Permafrost Keep
+poknowledge::Plane of Knowledge
+qcat::Qeynos Catacombs
+qey2hh1::West Karana
+qeynos::South Qeynos
+qeynos2::North Qeynos
+qeytoqrg::Qeynos Hills
+qrg::Surefall Glade
+rathemtn::Mountains of Rathe
+rivervale::Rivervale
+runnyeye::Clan RunnyEye
+sebilis::Old Sebilis
+shadowrest::Shadowrest
+sirens::Siren's Grotto
+skyfire::Skyfire Mountains
+skyshrine::Skyshrine
+sleeper::Sleeper's Tomb
+soldunga::Solusek's Eye
+soldungb::Nagafen's Lair
+soldungc::The Caverns of Exile
+soltemple::Temple of Solusek Ro
+southkarana::South Karana
+sro::South Ro
+steamfont::Steamfont Mountains
+steamfontmts::Steamfont Mountains
+stonebrunt::Stonebrunt Mountains
+swampofnohope::Swamp of No Hope
+takishruins::Ruins of Takish-Hiz
+templeveeshan::Temple of Veeshan
+thurgadina::Thurgadin
+thurgadinb::Icewell Keep
+timorous::Timorous Deep
+tox::Toxxulia Forest
+toxxulia::Toxxulia Forest
+trakanon::Trakanon's Teeth
+unrest::Estate of Unrest
+veeshan::Veeshan's Peak
+veksar::Veksar
+velketor::Velketor's Labyrinth
+wakening::The Wakening Land
+warrens::The Warrens
+warslikswood::Warsliks Wood
+westwastes::Western Wastes
