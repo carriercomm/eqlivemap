@@ -1,3 +1,5 @@
 Maps = new Meteor.Collection("maps")
 Figures = new Meteor.Collection("figures")
 Players = new Meteor.Collection("players")
+Auctions = new Meteor.Collection("auctions")
+Items = new Meteor.Collection("items")
